@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sağlıklı Finans - Hayat Kurtarırken Geleceğini Kurtar</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                🏥 Sağlıklı Finans
+            </div>
+            <ul class="nav-links">
+                <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+                <li><a href="#sorunlar">Sorunlar</a></li>
+                <li><a href="#cozumler" onclick="checkProtectedAccess(event)">Çözümler</a></li>
+                <li><a href="#egitim" onclick="checkProtectedAccess(event)">Eğitim</a></li>
+                <li id="nav-auth-links">
+                    <a href="#" onclick="showLoginForm(event)" style="margin-right: 1rem;">Giriş Yap</a>
+                    <a href="#" onclick="showRegistrationForm(event)">Kayıt Ol</a>
+                </li>
+                <li id="nav-user-info" style="display: none;">
+                    <div id="profile-container" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;" onclick="showProfileModal(event)">
+                        <img id="nav-profile-pic" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M12 14c-6 0-8 3-8 3v5h16v-5s-2-3-8-3z'/%3E%3C/svg%3E" alt="Profil" style="width: 35px; height: 35px; border-radius: 50%; background: rgba(255,255,255,0.2); padding: 3px;">
+                        <span id="user-display-name"></span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="ana-sayfa" class="hero">
+        <h1>💙 Sağlık Çalışanlarına Özel Finansal Platform</h1>
+        <p class="motto">"Hayat Kurtarırken Geleceğini Kurtar: Sağlıklı Finans, Sağlıklı Yaşam"</p>
+        <p>Vardiyalı çalışma düzeninize uygun, pratik ve etkili finansal çözümlerle geleceğinizi güvence altına alın.</p>
+        <a href="#kayit" class="cta-button">Ücretsiz Kayıt Ol</a>
+    </section>
+
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number">67%</div>
+                <div class="stat-label">Sağlık çalışanı düzenli birikim yapamıyor</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">42%</div>
+                <div class="stat-label">Kredi kartı borcu taşıyor</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">58%</div>
+                <div class="stat-label">Emeklilik planı yok</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">71%</div>
+                <div class="stat-label">Finansal stres yaşıyor</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sorunlar" class="problems">
+        <h2 class="section-title">🔍 Sağlık Çalışanlarının Finansal Zorlukları</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-icon">⏰</div>
+                <h3>Vardiyalı Çalışma</h3>
+                <p>Düzensiz mesai saatleri ve gece vardiyaları nedeniyle finansal planlama için zaman bulamama</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">💰</div>
+                <h3>Düzensiz Gelir</h3>
+                <p>Nöbet ücretleri ve ek ödemelerin farklı zamanlarda gelmesi bütçe yönetimini zorlaştırıyor</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">😰</div>
+                <h3>Yüksek Stres</h3>
+                <p>Yoğun iş temposu ve duygusal yük, finansal konularda sağlıklı karar almayı engelliyor</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">💳</div>
+                <h3>Borç Yükü</h3>
+                <p>Acil ihtiyaçlar için kullanılan kredi kartları ve tüketici kredileri birikmeye engel oluyor</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">📉</div>
+                <h3>Yetersiz Birikim</h3>
+                <p>Acil durum fonu ve emeklilik birikimi oluşturmak için kaynak ayrılamıyor</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">❓</div>
+                <h3>Bilgi Eksikliği</h3>
+                <p>Finansal okuryazarlık eğitimi almadıkları için doğru yatırım araçlarını bilmiyorlar</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cozumler" class="solutions">
+        <h2 class="section-title">✨ Bizim Çözümlerimiz</h2>
+        <div class="solution-grid">
+            <div class="solution-card">
+                <div class="solution-icon">📊</div>
+                <h3>Vardiyaya Özel Bütçe</h3>
+                <p>50/30/20 kuralını vardiyalı çalışma düzeninize uyarlayın. Nöbet ücretlerinizi akıllıca planlayın.</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">🤖</div>
+                <h3>Otomatik Tasarruf</h3>
+                <p>Dijital bankacılık araçlarıyla gelir gelir gelmez otomatik tasarruf yapın. Düşünmeden biriktirin!</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">🎓</div>
+                <h3>Ücretsiz Eğitimler</h3>
+                <p>Uzman eğitmenlerden canlı seminerler, webinarlar ve interaktif atölyelerle öğrenin.</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">💼</div>
+                <h3>Emeklilik Planı</h3>
+                <p>BES ve diğer emeklilik araçlarıyla geleceğinizi güvence altına alın. Devlet katkısından yararlanın.</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">📱</div>
+                <h3>Dijital Araçlar</h3>
+                <p>Mobil uygulamalar ve araçlarla 24/7 bütçenizi takip edin, harcamalarınızı kontrol altında tutun.</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">🤝</div>
+                <h3>Bireysel Danışmanlık</h3>
+                <p>Size özel finansal durum analizleri ve ücretsiz birebir danışmanlık hizmeti alın.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="video-container-section">
+            <h2 class="section-title">🎥 Eğitim Videoları</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">
+                Finansal okuryazarlık yolculuğunuzda size rehberlik edecek kısa ve öğretici videolarımızı izleyin.
+            </p>
+            <section id="video-akademi" class="video-section">
+        
+        <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=fDhk9t-DumI" target="_blank" class="fake-player">
+                    <img src="https://img.youtube.com/vi/fDhk9t-DumI/hqdefault.jpg" alt="Video Kapak">
+                    <div class="play-icon">▶</div>
+                </a>
+                <div class="video-content">
+                    <h3>💼 Finansal Okuryazarlık Nedir?</h3>
+                    <p>Düzensiz gelir akışınızı nasıl yönetebileceğinizi öğrenin. Temel kavramlar ve bütçe yönetimi.</p>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">⏱️ 10 dakika</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=npFKRCFMTIM" target="_blank" class="fake-player">
+                    <img src="https://img.youtube.com/vi/npFKRCFMTIM/hqdefault.jpg" alt="Video Kapak">
+                    <div class="play-icon">▶</div>
+                </a>
+                <div class="video-content">
+                    <h3>💰 Finansal Okuryazarlık Nasıl Elde Edilir?</h3>
+                    <p>Ben Nasıl Büyük Adam Olucam’ın yeni bölümünde Prof. Dr. Emre Alkin ile finansal okuryazarlık konusunu inceliyoruz! 💰📊</p>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">⏱️ 10 dakika</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=zO9hT8O9aTw" target="_blank" class="fake-player">
+                    <img src="https://img.youtube.com/vi/KV1jQeoC1ko/hqdefault.jpg" alt="Video Kapak">
+                    <div class="play-icon">▶</div>
+                </a>
+                <div class="video-content">
+                    <h3> Finansal Okuryazarlık Neden Önemlidir?</h3>
+                    <p>Prof. Dr. Korhan Gökmenoğlu ile finansal okuryazarlığın önemi, dolandırıcılardan korunma yolları ve yatırıma başlama yaşı üzerine kapsamlı bir rehber.</p>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">⏱️ 32 dakika</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <a href="https://www.youtube.com/watch?v=9NJOKe7q1rU" target="_blank" class="fake-player">
+                    <img src="https://img.youtube.com/vi/9NJOKe7q1rU/hqdefault.jpg" alt="Video Kapak">
+                    <div class="play-icon">▶</div>
+                </a>
+                <div class="video-content">
+                    <h3>Finansal Özgürlük Nedir, Nasıl Kazanılır</h3>
+                    <p>Borçluluktan finansal özgürlüğe giden 4 aşama nedir? "25 Kat Kuralı" ile emeklilik için gereken rakamı nasıl hesaplarsınız?</p>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">⏱️ 14 dakika</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+        </div>
+    </section>
+    
+
+    <section id="egitim" class="education">
+        <h2 class="section-title">📚 Size Özel 6 Finansal İpucu</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-number">1</div>
+                <h3>💸 Vardiya Bütçesi Oluşturun</h3>
+                <ul>
+                    <li>Her nöbet ücreti geldiğinde %20'sini otomatik tasarrufa ayırın</li>
+                    <li>Düzenli maaş ve ek gelirleri farklı hesaplarda tutun</li>
+                    <li>Aylık sabit giderlerinizi düzenli maaştan karşılayın</li>
+                    <li>Nöbet ücretlerini yatırım ve acil fon için kullanın</li>
+                </ul>
+            </div>
+            <div class="tip-card">
+                <div class="tip-number">2</div>
+                <h3>🚨 Acil Durum Fonu Yaratın</h3>
+                <ul>
+                    <li>3-6 aylık giderinizi karşılayacak fon oluşturun</li>
+                    <li>Bu parayı kolay erişilebilir ama ayrı bir hesapta tutun</li>
+                    <li>Beklenmedik sağlık giderleri için hazırlıklı olun</li>
+                    <li>Araç tamiri, ev onarımı gibi acil durumlar için</li>
+                </ul>
+            </div>
+            <div class="tip-card">
+                <div class="tip-number">3</div>
+                <h3>🏦 BES'e Katılın</h3>
+                <ul>
+                    <li>Bireysel Emeklilik Sistemi'nden %25 devlet katkısı alın</li>
+                    <li>Erken başlamak büyük fark yaratır (bileşik faiz)</li>
+                    <li>Aylık 500 TL bile uzun vadede büyük birikim sağlar</li>
+                    <li>Vergi avantajlarından yararlanın</li>
+                </ul>
+            </div>
+            <div class="tip-card">
+                <div class="tip-number">4</div>
+                <h3>💳 Borçlarınızı Önceliklendirin</h3>
+                <ul>
+                    <li>Yüksek faizli borçları (kredi kartı) önce ödeyin</li>
+                    <li>Kredi kartını taksit yerine tam ödeme için kullanın</li>
+                    <li>Mümkünse ek nöbet yaparak borçları erken kapatın</li>
+                    <li>Yeni borç almadan önce iki kez düşünün</li>
+                </ul>
+            </div>
+            <div class="tip-card">
+                <div class="tip-number">5</div>
+                <h3>📲 Dijital Araçları Kullanın</h3>
+                <ul>
+                    <li>Bütçe takip uygulamaları indirin (ücretsiz seçenekler mevcut)</li>
+                    <li>Otomatik ödeme talimatları verin (fatura gecikmeleri önleyin)</li>
+                    <li>Harcama bildirimlerini açın (kontrolü kaybetmeyin)</li>
+                    <li>Yatırım uygulamalarıyla küçük miktarlarla başlayın</li>
+                </ul>
+            </div>
+            <div class="tip-card">
+                <div class="tip-number">6</div>
+                <h3>🎯 50/30/20 Kuralını Uygulayın</h3>
+                <ul>
+                    <li>Gelirinizin %50'si: Zorunlu giderler (kira, fatura, yemek)</li>
+                    <li>%30'u: İstekler (eğlence, hobi, tatil)</li>
+                    <li>%20'si: Tasarruf ve borç ödeme</li>
+                    <li>Vardiya düzeninize göre bu oranları ayarlayın</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="success-story">
+        <div class="story-container">
+            <h2 class="section-title" style="color: white;">💬 Başarı Hikayesi</h2>
+            <p class="story-quote">
+                "10 yıldır hemşireyim. Bu programa katılmadan önce maaş gününü iple çekerdim. 
+                Kredi kartı borçlarım vardı ve hiç birikimim yoktu. Şimdi acil durum fonumda 6 aylık 
+                birikimim var ve BES'te düzenli katkı yapıyorum. En önemlisi, artık finansal stres yaşamıyorum! 
+                Nöbet ücretlerimi değerlendirmeyi öğrendim ve ilk defa tatile çıkabilecek param oldu."
+            </p>
+            <p class="story-author">
+                <strong>— Zeynep K., Hemşire, 32 yaş</strong><br>
+                Ankara Şehir Hastanesi
+            </p>
+        </div>
+    </section>
+
+    <section id="kayit" class="cta-section">
+        <div class="cta-content">
+            <h2>🎉 Ücretsiz Programa Katılın!</h2>
+            <p>İlk 100 katılımcıya özel hediyeler ve 1 yıllık ücretsiz dijital bütçe uygulaması!</p>
+            
+            <div class="benefits-list">
+                <div class="benefit-item">Ücretsiz Eğitim Seminerleri</div>
+                <div class="benefit-item">Finansal Planlama Ajandası</div>
+                <div class="benefit-item">Bireysel Danışmanlık (30 dk)</div>
+                <div class="benefit-item">Dijital Bütçe Uygulaması</div>
+                <div class="benefit-item">Özel WhatsApp Destek Grubu</div>
+                <div class="benefit-item">Aylık Webinar Erişimi</div>
+            </div>
+
+            <button class="cta-button" onclick="showRegistrationForm(event)">
+                Hemen Kayıt Ol - Tamamen Ücretsiz!
+            </button>
+
+            <div id="registrationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow-y: auto;">
+                <div style="background: white; max-width: 600px; margin: 50px auto; padding: 2rem; border-radius: 15px; position: relative;">
+                    <button onclick="closeRegistrationForm()" style="position: absolute; top: 15px; right: 15px; background: #ff5252; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: bold;">×</button>
+                    
+                    <h2 style="color: #1e88e5; margin-bottom: 1.5rem; text-align: center;">📝 Ücretsiz Programa Kayıt</h2>
+                    
+                    <form id="registrationForm" onsubmit="handleRegistration(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Ad *</label>
+                            <input type="text" id="reg-name" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Adınızı girin">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Soyad *</label>
+                            <input type="text" id="reg-surname" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Soyadınızı girin">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Kullanıcı Adı *</label>
+                            <input type="text" id="reg-username" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Kullanıcı adınızı girin">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Şifre *</label>
+                            <input type="password" id="reg-password" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Şifre girin (en az 6 karakter)">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Şifre Tekrar *</label>
+                            <input type="password" id="reg-password-confirm" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Şifreyi tekrar girin">
+                        </div>
+                        
+                        <button type="submit" style="background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); color: white; padding: 1rem; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 1rem; transition: transform 0.3s;">
+                            Kayıt Ol
+                        </button>
+                    </form>
+                    
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        * İşaretli alanlar zorunludur
+                    </p>
+                </div>
+            </div>
+
+            <!-- Login Modal -->
+            <div id="loginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow-y: auto;">
+                <div style="background: white; max-width: 600px; margin: 50px auto; padding: 2rem; border-radius: 15px; position: relative;">
+                    <button onclick="closeLoginForm()" style="position: absolute; top: 15px; right: 15px; background: #ff5252; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: bold;">×</button>
+                    
+                    <!-- Tabs -->
+                    <div style="display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 2px solid #eee;">
+                        <button type="button" id="tab-login-btn" onclick="switchLoginTab('login')" style="flex: 1; padding: 1rem; background: none; border: none; cursor: pointer; font-size: 1rem; font-weight: bold; color: #1e88e5; border-bottom: 3px solid #1e88e5; transition: all 0.3s;">
+                            🔐 Giriş Yap
+                        </button>
+                        <button type="button" id="tab-register-btn" onclick="switchLoginTab('register')" style="flex: 1; padding: 1rem; background: none; border: none; cursor: pointer; font-size: 1rem; font-weight: bold; color: #999; border-bottom: 3px solid transparent; transition: all 0.3s;">
+                            📝 Kayıt Ol
+                        </button>
+                    </div>
+
+                    <!-- Giriş Formu -->
+                    <div id="login-tab-content" style="display: block;">
+                        <h2 style="color: #1e88e5; margin-bottom: 1.5rem; text-align: center;">🔐 Giriş Yap</h2>
+                        
+                        <form id="loginForm" onsubmit="handleLogin(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Kullanıcı Adı *</label>
+                                <input type="text" id="login-username" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Kullanıcı adınızı girin">
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Şifre *</label>
+                                <input type="password" id="login-password" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Şifrenizi girin">
+                            </div>
+                            
+                            <div id="login-error" style="color: #ff5252; font-size: 0.9rem; display: none;"></div>
+                            
+                            <button type="submit" style="background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); color: white; padding: 1rem; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 1rem; transition: transform 0.3s;">
+                                Giriş Yap
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Kayıt Formu -->
+                    <div id="register-tab-content" style="display: none;">
+                        <h2 style="color: #1e88e5; margin-bottom: 1.5rem; text-align: center;">📝 Kayıt Ol</h2>
+                        
+                        <form id="quickRegisterForm" onsubmit="handleQuickRegistration(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Ad *</label>
+                                <input type="text" id="quick-reg-name" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Adınızı girin">
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Soyad *</label>
+                                <input type="text" id="quick-reg-surname" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Soyadınızı girin">
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Kullanıcı Adı *</label>
+                                <input type="text" id="quick-reg-username" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Kullanıcı adınızı girin">
+                            </div>
+                            
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Şifre *</label>
+                                <input type="password" id="quick-reg-password" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Şifre girin (en az 6 karakter)">
+                            </div>
+
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Şifre Tekrar *</label>
+                                <input type="password" id="quick-reg-password-confirm" required style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="Şifreyi tekrar girin">
+                            </div>
+
+                            <div id="register-error" style="color: #ff5252; font-size: 0.9rem; display: none;"></div>
+                            
+                            <button type="submit" style="background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); color: white; padding: 1rem; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 1rem; transition: transform 0.3s;">
+                                Kayıt Ol
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Modal -->
+            <div id="profileModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; overflow-y: auto;">
+                <div style="background: white; max-width: 600px; margin: 50px auto; padding: 2rem; border-radius: 15px; position: relative;">
+                    <button onclick="closeProfileModal()" style="position: absolute; top: 15px; right: 15px; background: #ff5252; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: bold;">×</button>
+                    
+                    <h2 style="color: #1e88e5; margin-bottom: 1.5rem; text-align: center;">👤 Profilim</h2>
+                    
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <img id="profile-image-display" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e88e5'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M12 14c-6 0-8 3-8 3v5h16v-5s-2-3-8-3z'/%3E%3C/svg%3E" alt="Profil Resmi" style="width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; background: #f0f0f0; border: 3px solid #1e88e5; cursor: pointer;" onclick="document.getElementById('profile-pic-input').click();">
+                        <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Resmi değiştirmek için tıkla</p>
+                        <input type="file" id="profile-pic-input" accept="image/*" style="display: none;" onchange="updateProfilePicture(event)">
+                    </div>
+                    
+                    <form id="profileForm" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- Kullanıcı Adı Değiştir -->
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Kullanıcı Adı</label>
+                            <input type="text" id="profile-username" readonly style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; background: #f5f5f5; color: #666;">
+                        </div>
+
+                        <!-- Şifre Değiştir -->
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Mevcut Şifre *</label>
+                            <input type="password" id="profile-current-password" placeholder="Mevcut şifrenizi girin" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Yeni Şifre</label>
+                            <input type="password" id="profile-new-password" placeholder="Yeni şifre girin (değiştirmek istemiyorsanız boş bırakın)" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold;">Yeni Şifre Tekrar</label>
+                            <input type="password" id="profile-new-password-confirm" placeholder="Yeni şifreyi tekrar girin" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <div id="profile-error" style="color: #ff5252; font-size: 0.9rem; display: none;"></div>
+                        <div id="profile-success" style="color: #4caf50; font-size: 0.9rem; display: none;"></div>
+                        
+                        <button type="button" onclick="updateProfile()" style="background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%); color: white; padding: 1rem; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 1rem; transition: transform 0.3s;">
+                            Değişiklikleri Kaydet
+                        </button>
+
+                        <button type="button" onclick="logout()" style="background: #ff5252; color: white; padding: 1rem; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; margin-top: 0.5rem; transition: transform 0.3s;">
+                            Çıkış Yap
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <script src="js/main.js"></script>
+
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.9;">
+                📧 info@sagliklifinans.com | 📱 0850 XXX XX XX<br>
+                İlk seminer: 15 Ocak 2026 | Şehir Hastanesi Konferans Salonu
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sağlıklı Finans</h3>
+                <p>Sağlık çalışanlarının finansal refahı için çalışıyoruz.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💼</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+                    <li><a href="#sorunlar">Sorunlar</a></li>
+                    <li><a href="#cozumler">Çözümler</a></li>
+                    <li><a href="#egitim">Eğitim</a></li>
+                    <li><a href="#kayit">Kayıt Ol</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Eğitim Programları</h3>
+                <ul>
+                    <li><a href="#egitim">Bütçe Planlama Atölyesi</a></li>
+                    <li><a href="#egitim">Yatırım Okuryazarlığı</a></li>
+                    <li><a href="#egitim">Emeklilik Planlaması</a></li>
+                    <li><a href="#egitim">Borç Yönetimi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <ul>
+                    <li>📧 info@sagliklifinans.com</li>
+                    <li>📱 0850 XXX XX XX</li>
+                    <li>📍 Ankara, Türkiye</li>
+                    <li>🕐 Pzt-Cum: 09:00-18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Sağlıklı Finans Platform. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+</body>
+</html>
