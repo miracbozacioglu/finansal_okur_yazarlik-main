@@ -1,12 +1,12 @@
 // ===== Sayfayı yüklemede kullanıcı durumunu kontrol et =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     checkUserStatus();
 });
 
 // ===== Kullanıcı Durumunu Kontrol Et =====
 function checkUserStatus() {
     const currentUser = localStorage.getItem('currentUser');
-    
+
     if (currentUser) {
         // Kullanıcı giriş yapmışsa
         const user = JSON.parse(currentUser);
@@ -25,7 +25,7 @@ function showUserInfo(user) {
     document.getElementById('nav-auth-links').style.display = 'none';
     document.getElementById('nav-user-info').style.display = 'flex';
     document.getElementById('user-display-name').textContent = user.name + ' ' + user.surname;
-    
+
     // Profil resmini yükle
     if (user.profilePic) {
         document.getElementById('nav-profile-pic').src = user.profilePic;
@@ -73,88 +73,27 @@ function checkProtectedAccess(event) {
 // ===== KAYIT MODAL FONKSİYONLARI =====
 function showRegistrationForm(event) {
     if (event) event.preventDefault();
-    document.getElementById('registrationModal').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeRegistrationForm() {
-    document.getElementById('registrationModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-    document.getElementById('registrationForm').reset();
-}
-
-function handleRegistration(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('reg-name').value.trim();
-    const surname = document.getElementById('reg-surname').value.trim();
-    const username = document.getElementById('reg-username').value.trim();
-    const password = document.getElementById('reg-password').value;
-    const passwordConfirm = document.getElementById('reg-password-confirm').value;
-
-    // Validasyonlar
-    if (!name || !surname || !username || !password) {
-        alert('Lütfen tüm alanları doldurun!');
-        return;
-    }
-
-    if (password.length < 6) {
-        alert('Şifre en az 6 karakter olmalıdır!');
-        return;
-    }
-
-    if (password !== passwordConfirm) {
-        alert('Şifreler eşleşmiyor!');
-        return;
-    }
-
-    // Kullanıcı adı kontrol et
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    
-    if (users.some(u => u.username === username)) {
-        alert('Bu kullanıcı adı zaten kullanılıyor!');
-        return;
-    }
-
-    // Yeni kullanıcı oluştur
-    const newUser = {
-        id: Date.now(),
-        name: name,
-        surname: surname,
-        username: username,
-        password: password, // Not: Gerçek uygulamada şifre şifrelenmelidir!
-        profilePic: null
-    };
-
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('✅ Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
-    closeRegistrationForm();
-    
-    // Giriş formunu aç
-    setTimeout(() => {
-        showLoginForm();
-    }, 500);
+    showLoginForm();
+    switchLoginTab('register');
 }
 
 // ===== GİRİŞ MODAL FONKSİYONLARI =====
 function showLoginForm(event) {
     if (event) event.preventDefault();
-    
+
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
         alert('Zaten giriş yapmış durumdasınız!');
         return;
     }
-    
-    document.getElementById('loginModal').style.display = 'block';
+
+    document.getElementById('loginModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
 function closeLoginForm() {
     document.getElementById('loginModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
     document.getElementById('loginForm').reset();
     document.getElementById('quickRegisterForm').reset();
     document.getElementById('login-error').style.display = 'none';
@@ -164,7 +103,7 @@ function closeLoginForm() {
 
 function handleLogin(event) {
     event.preventDefault();
-    
+
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
     const errorDiv = document.getElementById('login-error');
@@ -205,7 +144,7 @@ function handleLogin(event) {
 // ===== ÇIKIŞ FONKSİYONU =====
 function logout(event) {
     if (event) event.preventDefault();
-    
+
     if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
         localStorage.removeItem('currentUser');
         localStorage.removeItem('currentUserId');
@@ -223,22 +162,18 @@ function switchLoginTab(tab) {
     const registerContent = document.getElementById('register-tab-content');
     const loginBtn = document.getElementById('tab-login-btn');
     const registerBtn = document.getElementById('tab-register-btn');
-    
+
     if (tab === 'login') {
         loginContent.style.display = 'block';
         registerContent.style.display = 'none';
-        loginBtn.style.color = '#1e88e5';
-        loginBtn.style.borderBottomColor = '#1e88e5';
-        registerBtn.style.color = '#999';
-        registerBtn.style.borderBottomColor = 'transparent';
+        loginBtn.classList.add('active');
+        registerBtn.classList.remove('active');
         document.getElementById('login-error').style.display = 'none';
     } else {
         loginContent.style.display = 'none';
         registerContent.style.display = 'block';
-        loginBtn.style.color = '#999';
-        loginBtn.style.borderBottomColor = 'transparent';
-        registerBtn.style.color = '#1e88e5';
-        registerBtn.style.borderBottomColor = '#1e88e5';
+        loginBtn.classList.remove('active');
+        registerBtn.classList.add('active');
         document.getElementById('register-error').style.display = 'none';
     }
 }
@@ -246,7 +181,7 @@ function switchLoginTab(tab) {
 // ===== HIZLI KAYIT FONKSİYONU (Login Modal içinden) =====
 function handleQuickRegistration(event) {
     event.preventDefault();
-    
+
     const name = document.getElementById('quick-reg-name').value.trim();
     const surname = document.getElementById('quick-reg-surname').value.trim();
     const username = document.getElementById('quick-reg-username').value.trim();
@@ -275,7 +210,7 @@ function handleQuickRegistration(event) {
 
     // Kullanıcı adı benzersizliği kontrol et
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    
+
     if (users.some(u => u.username === username)) {
         errorDiv.textContent = 'Bu kullanıcı adı zaten kullanılıyor!';
         errorDiv.style.display = 'block';
@@ -297,7 +232,7 @@ function handleQuickRegistration(event) {
 
     alert('✅ Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
     document.getElementById('quickRegisterForm').reset();
-    
+
     // Giriş tabına dön
     switchLoginTab('login');
 }
@@ -314,7 +249,7 @@ function switchToRegistration(event) {
 // ===== PROFIL MODAL FONKSİYONLARI =====
 function showProfileModal(event) {
     if (event) event.preventDefault();
-    
+
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
         document.getElementById('profile-username').value = currentUser.username;
@@ -327,7 +262,7 @@ function showProfileModal(event) {
 
 function closeProfileModal() {
     document.getElementById('profileModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = '';
     document.getElementById('profile-current-password').value = '';
     document.getElementById('profile-new-password').value = '';
     document.getElementById('profile-new-password-confirm').value = '';
@@ -339,18 +274,18 @@ function updateProfilePicture(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const base64 = e.target.result;
-            
+
             // Resmi ekranda göster
             document.getElementById('profile-image-display').src = base64;
             document.getElementById('nav-profile-pic').src = base64;
-            
+
             // localStorage'a kaydet
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             currentUser.profilePic = base64;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
+
             // users dizisinde de güncelle
             const users = JSON.parse(localStorage.getItem('users'));
             const userIndex = users.findIndex(u => u.id === currentUser.id);
@@ -358,7 +293,7 @@ function updateProfilePicture(event) {
                 users[userIndex].profilePic = base64;
                 localStorage.setItem('users', JSON.stringify(users));
             }
-            
+
             showProfileSuccess('Profil resimi başarıyla yüklendi!');
         };
         reader.readAsDataURL(file);
@@ -371,27 +306,27 @@ function updateProfile() {
     const newPasswordConfirm = document.getElementById('profile-new-password-confirm').value;
     const errorDiv = document.getElementById('profile-error');
     const successDiv = document.getElementById('profile-success');
-    
+
     errorDiv.style.display = 'none';
     successDiv.style.display = 'none';
-    
+
     // Mevcut şifre kontrol et
     if (!currentPassword) {
         errorDiv.textContent = 'Lütfen mevcut şifrenizi girin!';
         errorDiv.style.display = 'block';
         return;
     }
-    
+
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const users = JSON.parse(localStorage.getItem('users'));
     const user = users.find(u => u.id === currentUser.id);
-    
+
     if (!user || user.password !== currentPassword) {
         errorDiv.textContent = '❌ Mevcut şifre hatalı!';
         errorDiv.style.display = 'block';
         return;
     }
-    
+
     // Şifre değişikliği yapılacaksa
     if (newPassword) {
         if (newPassword.length < 6) {
@@ -399,21 +334,21 @@ function updateProfile() {
             errorDiv.style.display = 'block';
             return;
         }
-        
+
         if (newPassword !== newPasswordConfirm) {
             errorDiv.textContent = 'Yeni şifreler eşleşmiyor!';
             errorDiv.style.display = 'block';
             return;
         }
-        
+
         // Şifreyi güncelle
         user.password = newPassword;
         users[users.findIndex(u => u.id === currentUser.id)] = user;
         localStorage.setItem('users', JSON.stringify(users));
-        
+
         successDiv.textContent = '✅ Şifreniz başarıyla değiştirildi!';
         successDiv.style.display = 'block';
-        
+
         // Formu temizle
         setTimeout(() => {
             document.getElementById('profile-current-password').value = '';
@@ -436,21 +371,12 @@ function showProfileSuccess(message) {
 }
 
 // ===== MODAL DIŞINA TIKLANINCA KAPAT =====
-document.addEventListener('DOMContentLoaded', function() {
-    const registrationModal = document.getElementById('registrationModal');
+document.addEventListener('DOMContentLoaded', function () {
     const loginModal = document.getElementById('loginModal');
     const profileModal = document.getElementById('profileModal');
 
-    if (registrationModal) {
-        registrationModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeRegistrationForm();
-            }
-        });
-    }
-
     if (loginModal) {
-        loginModal.addEventListener('click', function(e) {
+        loginModal.addEventListener('click', function (e) {
             if (e.target === this) {
                 closeLoginForm();
             }
@@ -458,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (profileModal) {
-        profileModal.addEventListener('click', function(e) {
+        profileModal.addEventListener('click', function (e) {
             if (e.target === this) {
                 closeProfileModal();
             }
